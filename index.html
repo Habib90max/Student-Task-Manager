@@ -1,67 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Task Manager</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Timer & Dark Mode</title>
+  <style>
+    /* Base Light Theme Styles */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+      color: #333333;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Dark Theme Styles */
+    body.dark-mode {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    #timer-display {
+      font-size: 4rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      font-variant-numeric: tabular-nums;
+      /* Keeps numbers from shifting */
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Specific style for the dark mode toggle */
+    #theme-toggle {
+      background-color: #4CAF50;
+    }
+
+    #theme-toggle:hover {
+      background-color: #388e3c;
+    }
+  </style>
 </head>
+
 <body>
 
-  
-  <header class="app-header">
-    <h1>Student Task Manager</h1>
-    <p>Organize, track, and complete your academic tasks</p>
-  </header>
+  <!-- Timer Display -->
+  <div id="timer-display">00:00</div>
 
-  <main class="app-container">
-    
-    <section class="form-container">
-      <h2>Add New Task</h2>
-      <form id="task-form">
-        <div class="form-group">
-          <label for="task-title">Task Title</label>
-          <input 
-            type="text" 
-            id="task-title" 
-            placeholder="e.g., Git & GitHub Assignment" 
-            required 
-            maxlength="60"
-          />
-        </div>
+  <!-- Timer Controls -->
+  <div class="controls">
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+    <button onclick="resetTimer()">Reset</button>
+  </div>
 
-        <div class="form-group">
-          <label for="task-desc">Description</label>
-          <textarea 
-            id="task-desc" 
-            placeholder="Add relevant details or notes about this task..." 
-            rows="3"
-          ></textarea>
-        </div>
+  <!-- Dark Mode Button -->
+  <button id="theme-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="task-priority">Priority</label>
-            <select id="task-priority">
-              <option value="low">Low Priority</option>
-              <option value="medium" selected>Medium Priority</option>
-              <option value="high">High Priority</option>
-            </select>
-          </div>
+  <script>
+    // --- Timer Logic ---
+    let timeInSeconds = 0;
+    let timerInterval;
+    let isRunning = false;
 
-          <div class="form-group">
-            <label for="task-due-date">Due Date</label>
-            <input type="date" id="task-due-date" />
-          </div>
-        </div>
+    const display = document.getElementById('timer-display');
 
-        <button type="submit" class="btn-submit">
-          <span>+</span> Add Task
-        </button>
-      </form>
-    </section>
-  </main>
+    function updateDisplay() {
+      const minutes = Math.floor(timeInSeconds / 60);
+      const seconds = timeInSeconds % 60;
 
-  <script src="script.js"></script>
+      // Format numbers to always have two digits (e.g., 05:09)
+      const formattedMinutes = String(minutes).padStart(2, '0');
+      const formattedSeconds = String(seconds).padStart(2, '0');
+
+      display.textContent = `${formattedMinutes}:${formattedSeconds}`;
+    }
+
+    function startTimer() {
+      if (!isRunning) {
+        isRunning = true;
+        timerInterval = setInterval(() => {
+          timeInSeconds++;
+          updateDisplay();
+        }, 1000);
+      }
+    }
+
+    function stopTimer() {
+      isRunning = false;
+      clearInterval(timerInterval);
+    }
+
+    function resetTimer() {
+      stopTimer(); // Pause it
+      timeInSeconds = 0; // Reset count
+      updateDisplay(); // Update screen back to 00:00
+    }
+
+    // --- Dark Mode Logic ---
+    function toggleDarkMode() {
+      // Toggles the 'dark-mode' class on the <body> tag
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
 </body>
+
 </html>

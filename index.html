@@ -1,309 +1,113 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Login & Timer</title>
-    <style>
-        /* --- CSS Variables for Theme Switching --- */
-        :root {
-            --bg-color: #f3f4f6;
-            --card-bg: #ffffff;
-            --text-main: #1f2937;
-            --text-muted: #6b7280;
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --border: #e5e7eb;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
 
-        [data-theme="dark"] {
-            --bg-color: #111827;
-            --card-bg: #1f2937;
-            --text-main: #f9fafb;
-            --text-muted: #9ca3af;
-            --primary: #6366f1;
-            --primary-hover: #818cf8;
-            --border: #374151;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-        }
+  <meta charset="UTF-8">
 
-        /* --- Global Styles --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            transition: background-color 0.4s ease;
-        }
+  <title>Student Task Manager</title>
 
-        /* --- Main Card Container --- */
-        .card {
-            background-color: var(--card-bg);
-            width: 100%;
-            max-width: 400px;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            transition: background-color 0.4s ease, box-shadow 0.4s ease;
-        }
+  <link rel="stylesheet" href="style.css">
 
-        /* --- Header & Theme Toggle --- */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .header h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .theme-btn {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 50%;
-            transition: background-color 0.2s;
-        }
-        
-        .theme-btn:hover {
-            background-color: var(--border);
-        }
-
-        /* --- Timer Section --- */
-        .timer-section {
-            text-align: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 1.5rem;
-        }
-
-        .time-display {
-            font-size: 2.5rem;
-            font-weight: bold;
-            font-variant-numeric: tabular-nums;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .timer-controls {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-
-        .timer-controls button {
-            padding: 0.4rem 0.8rem;
-            font-size: 0.85rem;
-            border: 1px solid var(--border);
-            background-color: transparent;
-            color: var(--text-main);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .timer-controls button:hover {
-            background-color: var(--border);
-        }
-
-        /* --- Login Form --- */
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="password"] {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background-color: transparent;
-            color: var(--text-main);
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-group input:focus {
-            border-color: var(--primary);
-        }
-
-        /* --- Radio Buttons --- */
-        .radio-group {
-            display: flex;
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .radio-option {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
-        .radio-option input[type="radio"] {
-            accent-color: var(--primary); /* Modern way to style radio colors */
-            width: 16px;
-            height: 16px;
-            cursor: pointer;
-        }
-
-        /* --- Submit Button --- */
-        .submit-btn {
-            width: 100%;
-            padding: 0.75rem;
-            margin-top: 1rem;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--primary-hover);
-        }
-    </style>
 </head>
+
 <body>
 
-    <div class="card">
-        <!-- Header -->
-        <div class="header">
-            <h2>Account Access</h2>
-            <button class="theme-btn" id="theme-toggle" title="Toggle Theme">🌙</button>
+
+
+
+
+  <header class="app-header">
+
+    <h1>Student Task Manager</h1>
+
+    <p>Organize, track, and complete your academic tasks</p>
+
+  </header>
+
+
+
+  <main class="app-container">
+
+
+
+    <section class="form-container">
+
+      <h2>Add New Task</h2>
+
+      <form id="task-form">
+
+        <div class="form-group">
+
+          <label for="task-title">Task Title</label>
+
+          <input type="text" id="task-title" placeholder="e.g., Git & GitHub Assignment" required maxlength="60" />
+
         </div>
 
-        <!-- Timer Section -->
-        <div class="timer-section">
-            <div class="time-display" id="time-display">00:00</div>
-            <div class="timer-controls">
-                <button type="button" onclick="startTimer()">Start</button>
-                <button type="button" onclick="stopTimer()">Stop</button>
-                <button type="button" onclick="resetTimer()">Reset</button>
-            </div>
+
+
+        <div class="form-group">
+
+          <label for="task-desc">Description</label>
+
+          <textarea id="task-desc" placeholder="Add relevant details or notes about this task..." rows="3"></textarea>
+
         </div>
 
-        <!-- Login Form -->
-        <form onsubmit="handleLogin(event)">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" placeholder="Enter your username" required>
-            </div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
-            </div>
 
-            <!-- Radio Buttons -->
-            <div class="form-group">
-                <label>Select Role</label>
-                <div class="radio-group">
-                    <label class="radio-option">
-                        <input type="radio" name="role" value="student" checked>
-                        Student
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="role" value="teacher">
-                        Teacher
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="role" value="admin">
-                        Admin
-                    </label>
-                </div>
-            </div>
+        <div class="form-row">
 
-            <button type="submit" class="submit-btn">Login</button>
-        </form>
-    </div>
+          <div class="form-group">
 
-    <script>
-        // --- Theme Toggle Logic ---
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
+            <label for="task-priority">Priority</label>
 
-        themeToggleBtn.addEventListener('click', () => {
-            if (htmlElement.getAttribute('data-theme') === 'dark') {
-                htmlElement.removeAttribute('data-theme');
-                themeToggleBtn.textContent = '🌙';
-            } else {
-                htmlElement.setAttribute('data-theme', 'dark');
-                themeToggleBtn.textContent = '☀️';
-            }
-        });
+            <select id="task-priority">
 
-        // --- Timer Logic ---
-        let timeInSeconds = 0;
-        let timerInterval;
-        let isRunning = false;
-        const display = document.getElementById('time-display');
+              <option value="low">Low Priority</option>
 
-        function updateDisplay() {
-            const minutes = String(Math.floor(timeInSeconds / 60)).padStart(2, '0');
-            const seconds = String(timeInSeconds % 60).padStart(2, '0');
-            display.textContent = `${minutes}:${seconds}`;
-        }
+              <option value="medium" selected>Medium Priority</option>
 
-        function startTimer() {
-            if (!isRunning) {
-                isRunning = true;
-                timerInterval = setInterval(() => {
-                    timeInSeconds++;
-                    updateDisplay();
-                }, 1000);
-            }
-        }
+              <option value="high">High Priority</option>
 
-        function stopTimer() {
-            isRunning = false;
-            clearInterval(timerInterval);
-        }
+            </select>
 
-        function resetTimer() {
-            stopTimer();
-            timeInSeconds = 0;
-            updateDisplay();
-        }
+          </div>
 
-        // --- Form Submission Logic ---
-        function handleLogin(event) {
-            event.preventDefault(); // Prevents the page from reloading
-            
-            // Grab the selected radio button value
-            const selectedRole = document.querySelector('input[name="role"]:checked').value;
-            
-            alert(`Simulating login for role: ${selectedRole.toUpperCase()}`);
-        }
-    </script>
+
+
+          <div class="form-group">
+
+            <label for="task-due-date">Due Date</label>
+
+            <input type="date" id="task-due-date" />
+
+          </div>
+
+        </div>
+
+
+
+        <button type="submit" class="btn-submit">
+
+          <span>+</span> Add Task
+
+        </button>
+
+      </form>
+
+    </section>
+
+  </main>
+
+
+
+  <script src="script.js"></script>
 
 </body>
+
 </html>

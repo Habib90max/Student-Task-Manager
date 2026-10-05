@@ -1,67 +1,113 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Student Task Manager</title>
+
   <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-  
+
+
+
+
   <header class="app-header">
+
     <h1>Student Task Manager</h1>
+
     <p>Organize, track, and complete your academic tasks</p>
+
   </header>
 
+
+
   <main class="app-container">
-    
+
+
+
     <section class="form-container">
+
       <h2>Add New Task</h2>
+
       <form id="task-form">
-        <div class="form-group">
-          <label for="task-title">Task Title</label>
-          <input 
-            type="text" 
-            id="task-title" 
-            placeholder="e.g., Git & GitHub Assignment" 
-            required 
-            maxlength="60"
-          />
-        </div>
 
         <div class="form-group">
-          <label for="task-desc">Description</label>
-          <textarea 
-            id="task-desc" 
-            placeholder="Add relevant details or notes about this task..." 
-            rows="3"
-          ></textarea>
+
+          <label for="task-title">Task Title</label>
+
+          <input type="text" id="task-title" placeholder="e.g., Git & GitHub Assignment" required maxlength="60" />
+
         </div>
+
+
+
+        <div class="form-group">
+
+          <label for="task-desc">Description</label>
+
+          <textarea id="task-desc" placeholder="Add relevant details or notes about this task..." rows="3"></textarea>
+
+        </div>
+
+
 
         <div class="form-row">
-          <div class="form-group">
-            <label for="task-priority">Priority</label>
-            <select id="task-priority">
-              <option value="low">Low Priority</option>
-              <option value="medium" selected>Medium Priority</option>
-              <option value="high">High Priority</option>
-            </select>
-          </div>
 
           <div class="form-group">
-            <label for="task-due-date">Due Date</label>
-            <input type="date" id="task-due-date" />
+
+            <label for="task-priority">Priority</label>
+
+            <select id="task-priority">
+
+              <option value="low">Low Priority</option>
+
+              <option value="medium" selected>Medium Priority</option>
+
+              <option value="high">High Priority</option>
+
+            </select>
+
           </div>
+
+
+
+          <div class="form-group">
+
+            <label for="task-due-date">Due Date</label>
+
+            <input type="date" id="task-due-date" />
+
+          </div>
+
         </div>
 
+
+
         <button type="submit" class="btn-submit">
+
           <span>+</span> Add Task
+
         </button>
+
       </form>
+
     </section>
+
   </main>
 
+
+
   <script src="script.js"></script>
+
 </body>
+
 </html>

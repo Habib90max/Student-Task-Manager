@@ -1,1 +1,1 @@
-student task management  system 
+student task management application
